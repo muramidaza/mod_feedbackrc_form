@@ -1,24 +1,31 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' );
+<?php defined('_JEXEC')  or die('Restricted access');
      
     // Если кнопка нажата, то отправить письмо
 	if(isset($_POST['mod_feedback_submitted'])) {
 
-		// Проверяем, установлена и настроена ли капча
-		if ( $c_plugin = JFactory::getApplication()->getCfg('captcha'))
-		{
-			// Получаем значение капчи
-			$c_value = $app->input->get('captcha_field_name', null, 'STRING');
-		 
-			// Получаем объект капчи
-			$captcha_obj = JCaptcha::getInstance($c_plugin, array('namespace' => 'my_component_form'));
-		 
-			// Проверяем капчу
-			if (!$captcha_obj->checkAnswer($c_value))
-			{
-				require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form', "error_captcha" ));
-				return false;
-			}
-		}
+        // Проверяем, установлена и настроена ли капча
+        if ($c_plugin = JFactory::getApplication()->getCfg('captcha'))
+        {
+            // Получаем значение капчи
+            $c_value = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
+
+            // Получаем объект капчи
+            $captcha_obj = JCaptcha::getInstance($c_plugin);
+
+            // Проверяем капчу
+
+            $result = 0;
+            if(strlen($c_value) > 0)
+            {
+                $result = $captcha_obj->checkAnswer($c_value);
+            }
+
+            if (!$result)
+            {
+                require(ModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
+                return false;
+            }
+        }
 	
 		$name = isset($_POST['feedback_name']) ? $_POST['feedback_name'] : 'Не указано';
         $email = isset($_POST['feedback_email']) ? $_POST['feedback_email'] : 'Не указано';
@@ -47,14 +54,14 @@
 		
 		if($send_mail or $send_mailsecond) {
 			// Показывает сообщение об успешной отправке из файла success.php
-			require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form', "success" ));
+			require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'success'));
 		} else {
 			// Показывает сообщение об ошибке из файла error.php
-			require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form', "error" ));			
+			require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error'));
 		}
     }
     else { 
         // Если кнопка НЕ нажата, то показывать стандартную форму из файла default.php
-        require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form' ));    
+        require(JModuleHelper::getLayoutPath('mod_feedbackrc_form'));
     }
 ?>
