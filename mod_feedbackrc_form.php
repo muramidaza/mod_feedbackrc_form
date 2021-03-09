@@ -6,23 +6,22 @@
         // Проверяем, установлена и настроена ли капча
         if ($c_plugin = JFactory::getApplication()->getCfg('captcha'))
         {
-            // Получаем значение капчи
+            // Получаем ключ капчи
             $c_value = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
+
+            // Проверям пришел ли ключ капчи
+            if(strlen($c_value) != 484) {
+                require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
+                return false;
+            }
 
             // Получаем объект капчи
             $captcha_obj = JCaptcha::getInstance($c_plugin);
 
             // Проверяем капчу
-
-            $result = 0;
-            if(strlen($c_value) > 0)
+            if (!$captcha_obj->checkAnswer($c_value))
             {
-                $result = $captcha_obj->checkAnswer($c_value);
-            }
-
-            if (!$result)
-            {
-                require(ModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
+                require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
                 return false;
             }
         }
@@ -61,7 +60,7 @@
 		}
     }
     else { 
-        // Если кнопка НЕ нажата, то показывать стандартную форму из файла default.php
+        // Если кнопка не нажата, то показывать стандартную форму из файла default.php
         require(JModuleHelper::getLayoutPath('mod_feedbackrc_form'));
     }
 ?>
