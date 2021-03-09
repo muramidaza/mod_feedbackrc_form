@@ -16,6 +16,8 @@
 		<filename module="mod_feedback_form">success.php</filename>
 		<filename module="mod_feedback_form">error.php</filename>
 		<filename module="mod_feedback_form">error_captcha.php</filename>
+		<folder>css</folder>
+		<filename module="mod_feedback_form">bootstrap.min.css</filename>
 	</files>
 	<config>
 		<fields name="params">

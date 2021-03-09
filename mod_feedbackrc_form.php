@@ -1,5 +1,8 @@
 <?php defined('_JEXEC')  or die('Restricted access');
-     
+
+    $document = JFactory::getDocument();
+    $document->addStyleSheet(JURI::base() . 'modules/mod_feedbackrc_form/css/bootstrap.min.css');
+
     // Если кнопка нажата, то отправить письмо
 	if(isset($_POST['mod_feedback_submitted'])) {
 
