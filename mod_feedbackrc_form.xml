@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.6" client="site">
+<extension type="module" version="3.6" client="site" method="upgrade">
 	<name>FeedbackReCaptcha Form</name>
 	<author>Muramidaza</author>
-	<creationDate>2021</creationDate>
-	<copyright>Copyright (C) 2016. All rights reserved.</copyright>    
+	<creationDate>Mart 2021</creationDate>
+	<copyright>Copyright (C) 2021. All rights reserved.</copyright>
 	<license>Public License</license>
-	<authorEmail><a href="mailto:author@mail.ru">muramidaza@gmail.com</a></authorEmail>
+	<authorEmail><a href="mailto:muramidaza@gmail.com">muramidaza@gmail.com</a></authorEmail>
 	<authorUrl>www.muramidaza.ru</authorUrl>
 	<version>1.0.0</version>
 	<description>Модуль для создания формы обратной связи на сайте с reCaptcha.</description>
+	<languages>
+		<language tag="en-GB">language/en-GB.mod_feedbackrc_form.ini</language>
+	</languages>
 	<files>
-		<filename module="mod_feedback_form">mod_feedbackrc_form.php</filename>
+		<filename module="mod_feedbackrc_form">mod_feedbackrc_form.php</filename>
+		<filename>index.html</filename>
 		<folder>tmpl</folder>
-		<filename module="mod_feedback_form">default.php</filename>
-		<filename module="mod_feedback_form">success.php</filename>
-		<filename module="mod_feedback_form">error.php</filename>
-		<filename module="mod_feedback_form">error_captcha.php</filename>
 		<folder>css</folder>
-		<filename module="mod_feedback_form">bootstrap.min.css</filename>
+		<folder>language</folder>
 	</files>
 	<config>
 		<fields name="params">
-			<fieldset name="feedbackform" label="Настройки">
+			<fieldset name="feedback-form" label="Настройки">
  
 				<field name="feedback-email" type="email"
 					label="E-mail"

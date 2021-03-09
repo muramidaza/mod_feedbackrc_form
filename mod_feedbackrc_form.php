@@ -13,7 +13,7 @@
             $c_value = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
 
             // Проверям пришел ли ключ капчи
-            if(strlen($c_value) != 484) {
+            if(strlen($c_value) == 0) {
                 require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
                 return false;
             }
