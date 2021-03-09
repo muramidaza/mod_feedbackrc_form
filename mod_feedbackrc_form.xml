@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.6" client="site">
+	<name>FeedbackReCaptcha Form</name>
+	<author>Muramidaza</author>
+	<creationDate>2021</creationDate>
+	<copyright>Copyright (C) 2016. All rights reserved.</copyright>    
+	<license>Public License</license>
+	<authorEmail><a href="mailto:author@mail.ru">muramidaza@gmail.com</a></authorEmail>
+	<authorUrl>www.muramidaza.ru</authorUrl>
+	<version>1.0.0</version>
+	<description>Модуль для создания формы обратной связи на сайте с reCaptcha.</description>
+	<files>
+		<filename module="mod_feedback_form">mod_feedbackrc_form.php</filename>
+		<folder>tmpl</folder>
+		<filename module="mod_feedback_form">default.php</filename>
+		<filename module="mod_feedback_form">success.php</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="feedbackform" label="Настройки">
+ 
+				<field name="feedback-email" type="email"
+					label="E-mail"
+					description="Напишите почтовый ящик, на который хотите получать письма от пользователей."
+					required="true"
+					size="30"
+ 
+					validate="email" />
+					
+				<field name="feedback-emailsecond" type="email"
+					label="E-mail"
+					description="Напишите второй почтовый ящик, на который хотите получать письма от пользователей."
+					size="30"
+ 
+					validate="email" />					
+ 
+				<field name="feedback_title_form" type="text" default=""
+					label="Заголовок в форме"
+					description="Напишите заголовок, который будет отображаться в форме обратной связи перед полями."
+					size="30" />
+ 
+				<field name="feedback_title" type="text" default=""
+					label="Заголовок письма"
+					description="Этот заголовок будет показан в приходящем на почту письме."
+					required="true"
+					size="30" />
+ 
+				<field name="feedback_success_message" type="text" default=""
+					label="Удачная отправка"
+					description="Сообщение о том, что письмо удалось отправить."
+					required="true"
+					size="300" />
+					
+				<field name="feedback_success_error" type="text" default=""
+					label="Ошибка отправки"
+					description="Сообщение об ошибке."
+					required="true"
+					size="300" />					
+ 
+			</fieldset>
+		</fields>
+	</config>
+</extension>
