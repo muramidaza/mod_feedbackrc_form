@@ -3,32 +3,19 @@
     // Если кнопка нажата, то отправить письмо
 	if(isset($_POST['mod_feedback_submitted'])) {
 
-		// ** Extra validation for manually added captcha
-		// Use configured captcha plugin
+		// Проверяем, установлена и настроена ли капча
 		if ( $c_plugin = JFactory::getApplication()->getCfg('captcha'))
 		{
-			// Get captcha value
+			// Получаем значение капчи
 			$c_value = $app->input->get('captcha_field_name', null, 'STRING');
 		 
-			// Get captch object instance
+			// Получаем объект капчи
 			$captcha_obj = JCaptcha::getInstance($c_plugin, array('namespace' => 'my_component_form'));
 		 
-			// Validate catcha
+			// Проверяем капчу
 			if (!$captcha_obj->checkAnswer($c_value))
 			{
-				// Get the captcha validation message and push it out to the user
-				// but default error message is not good ? maybe use custom here
-				//$error = $captcha_obj->getError();
-				//$app->enqueueMessage($error instanceof Exception ? $error->getMessage() : $error, 'error');
-		 
-				// Set POST form data into the session, so that they get reloaded
-				//$app->setUserState($form->option.'.edit.'.$form->context.'.data', $data);
-		 
-				// Redirect back to the component form
-				//$this->setRedirect( '...' );
-				
 				require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form', "error_captcha" ));
-				
 				return false;
 			}
 		}
@@ -46,7 +33,7 @@
         $message = "<h2>Текст сообщения:</h2>"; // Текст письма на почте
 		$message .= "<p><b>Имя:</b> $name</p>"; // Имя - если не заполнено, покажет "Не указано"
         $message .= "<p><b>E-mail:</b> $email</p>"; // Телефон - если не заполнено, покажет "Не указано"
-		$message .= "<p><b>Тема:</b> $title </p>"; // Тема - если не заполнено, покажет "Не указано"
+		$message .= "<p><b>Тема:</b> $title</p>"; // Тема - если не заполнено, покажет "Не указано"
         $message .= "<p>$formmessenge</p>"; // Сообщение - если не заполнено, покажет "Не указано"
      
         $headers= "MIME-Version: 1.0\r\n";
