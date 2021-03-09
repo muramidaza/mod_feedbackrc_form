@@ -60,10 +60,10 @@
 					size="300" />
 
 				<field name="feedback_error_captcha_message" type="text" default=""
-					   label="Ошибка капчи"
-					   description="Сообщение об ошибке капчи."
-					   required="true"
-					   size="300" />
+					label="Ошибка капчи"
+					description="Сообщение об ошибке капчи."
+				 	required="true"
+					size="300" />
  
 			</fieldset>
 		</fields>
