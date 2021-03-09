@@ -14,6 +14,8 @@
 		<folder>tmpl</folder>
 		<filename module="mod_feedback_form">default.php</filename>
 		<filename module="mod_feedback_form">success.php</filename>
+		<filename module="mod_feedback_form">error.php</filename>
+		<filename module="mod_feedback_form">error_captcha.php</filename>
 	</files>
 	<config>
 		<fields name="params">
@@ -51,11 +53,17 @@
 					required="true"
 					size="300" />
 					
-				<field name="feedback_success_error" type="text" default=""
+				<field name="feedback_error_message" type="text" default=""
 					label="Ошибка отправки"
 					description="Сообщение об ошибке."
 					required="true"
-					size="300" />					
+					size="300" />
+
+				<field name="feedback_error_captcha_message" type="text" default=""
+					   label="Ошибка капчи"
+					   description="Сообщение об ошибке капчи."
+					   required="true"
+					   size="300" />
  
 			</fieldset>
 		</fields>

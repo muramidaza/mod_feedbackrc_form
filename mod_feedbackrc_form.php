@@ -27,7 +27,7 @@
 				// Redirect back to the component form
 				//$this->setRedirect( '...' );
 				
-				require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form', "error" ));
+				require( JModuleHelper::getLayoutPath( 'mod_feedbackrc_form', "error_captcha" ));
 				
 				return false;
 			}
