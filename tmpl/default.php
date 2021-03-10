@@ -1,16 +1,13 @@
 <div class="container-fluid">
     <div class="row">
-
         <div class="card col-12">
-
             <div class="card-body">
 
-                <!-- Заголовок контейнера -->
+                <!-- Заголовок -->
                 <div class="card-title">
                     <h3><?php echo $params['feedback_title_form']?></h3>
                 </div>
 
-                <!-- Форма обратной связи -->
                 <form method="POST">
 
                     <!-- Имя пользователя -->
@@ -68,6 +65,7 @@
                         <label for="message" class="control-label">Введите сообщение:</label>
                         <textarea
                             id="message"
+                            name="feedback_message"
                             class="form-control"
                             rows="5"
                             placeholder="Ваше сообщение"
@@ -96,12 +94,17 @@
 
                     <hr>
 
-                    <input type="submit" value="Отправить сообщение" class="btn btn-info" name="mod_feedback_submitted" style="font-size: 1.3rem" />
+                    <input
+                        type="submit"
+                        value="Отправить сообщение"
+                        class="btn btn-info"
+                        name="mod_feedbackrc_submitted"
+                        style="font-size: 1.3rem"
+                    />
 
-                </form><!-- Конец формы -->
+                </form>
 
             </div>
-
         </div>
     </div>
 </div>

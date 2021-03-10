@@ -4,7 +4,7 @@
     $document->addStyleSheet(JURI::base() . 'modules/mod_feedbackrc_form/css/bootstrap.min.css');
 
     // Если кнопка нажата, то отправить письмо
-	if(isset($_POST['mod_feedback_submitted'])) {
+	if(isset($_POST['mod_feedbackrc_submitted'])) {
 
         // Проверяем, установлена и настроена ли капча
         if ($c_plugin = JFactory::getApplication()->getCfg('captcha'))
@@ -14,6 +14,7 @@
 
             // Проверям пришел ли ключ капчи
             if(strlen($c_value) == 0) {
+                // Показывает сообщение об ошибке из файла error_captcha.php
                 require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
                 return false;
             }
@@ -24,6 +25,7 @@
             // Проверяем капчу
             if (!$captcha_obj->checkAnswer($c_value))
             {
+                // Показывает сообщение об ошибке из файла error_captcha.php
                 require(JModuleHelper::getLayoutPath('mod_feedbackrc_form', 'error_captcha'));
                 return false;
             }
@@ -32,27 +34,27 @@
 		$name = isset($_POST['feedback_name']) ? $_POST['feedback_name'] : 'Не указано';
         $email = isset($_POST['feedback_email']) ? $_POST['feedback_email'] : 'Не указано';
         $title = isset($_POST['feedback_title']) ? $_POST['feedback_title'] : 'Не указано';
-		$formmessenge = isset($_POST['feedback_form_messenge']) ? $_POST['feedback_form_messenge'] : 'Не указано';
+		$message = isset($_POST['feedback_message']) ? $_POST['feedback_message'] : 'Не указано';
      
         $name = strip_tags($name); 
         $email = strip_tags($email);
 		$title = strip_tags($title);
-        $formmessenge = strip_tags($formmessenge); 
+        $message = strip_tags($message);
      
-        $message = "<h2>Текст сообщения:</h2>"; // Текст письма на почте
-		$message .= "<p><b>Имя:</b> $name</p>"; // Имя - если не заполнено, покажет "Не указано"
-        $message .= "<p><b>E-mail:</b> $email</p>"; // Телефон - если не заполнено, покажет "Не указано"
-		$message .= "<p><b>Тема:</b> $title</p>"; // Тема - если не заполнено, покажет "Не указано"
-        $message .= "<p>$formmessenge</p>"; // Сообщение - если не заполнено, покажет "Не указано"
+        $mail_body = "<h2>Текст сообщения:</h2>"; // Текст письма на почте
+		$mail_body .= "<p><b>Имя:</b> $name</p>"; // Имя - если не заполнено, покажет "Не указано"
+        $mail_body .= "<p><b>E-mail:</b> $email</p>"; // Телефон - если не заполнено, покажет "Не указано"
+		$mail_body .= "<p><b>Тема:</b> $title</p>"; // Тема - если не заполнено, покажет "Не указано"
+        $mail_body .= "<p>$message</p>"; // Сообщение - если не заполнено, покажет "Не указано"
      
         $headers= "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=utf-8"; // кодировка ставится в зависимости от сервера: utf-8 или windows-1251
      
         // Отправляем письмо на указанный ящик с заголовком
-        $send_mail = @mail($params['feedback-email'], $params['feedback_title'], $message, $headers);
+        $send_mail = @mail($params['feedback_email'], $params['feedback_title'], $mail_body, $headers);
      
 		// Отправляем письмо на второй ящик с заголовком если ящик был указан
-		if($params['feedback-emailsecond']) $send_mailsecond = @mail($params['feedback-emailsecond'], $params['feedback_title'], $message, $headers);
+		if($params['feedback_emailsecond']) $send_mailsecond = @mail($params['feedback_emailsecond'], $params['feedback_title'], $mail_body, $headers);
 		
 		if($send_mail or $send_mailsecond) {
 			// Показывает сообщение об успешной отправке из файла success.php

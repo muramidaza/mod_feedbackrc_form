@@ -23,7 +23,7 @@
 		<fields name="params">
 			<fieldset name="feedback-form" label="Настройки">
  
-				<field name="feedback-email" type="email"
+				<field name="feedback_email" type="email"
 					label="E-mail"
 					description="Напишите почтовый ящик, на который хотите получать письма от пользователей."
 					required="true"
@@ -31,7 +31,7 @@
  
 					validate="email" />
 					
-				<field name="feedback-emailsecond" type="email"
+				<field name="feedback_emailsecond" type="email"
 					label="E-mail"
 					description="Напишите второй почтовый ящик, на который хотите получать письма от пользователей."
 					size="30"
