@@ -51,10 +51,10 @@
             $headers .= "Content-type: text/html; charset=utf-8"; // кодировка ставится в зависимости от сервера: utf-8 или windows-1251
      
         // Отправляем письмо на указанный ящик с заголовком
-        $send_mail = @mail($params['feedback_email'], $params['feedback_title'], $mail_body, $headers);
+        $send_mail = @mail($params['feedbackrc_email'], $params['feedbackrc_title'], $mail_body, $headers);
      
 		// Отправляем письмо на второй ящик с заголовком если ящик был указан
-		if($params['feedback_emailsecond']) $send_mailsecond = @mail($params['feedback_emailsecond'], $params['feedback_title'], $mail_body, $headers);
+		if($params['feedbackrc_emailsecond']) $send_mailsecond = @mail($params['feedbackrc_emailsecond'], $params['feedbackrc_title'], $mail_body, $headers);
 		
 		if($send_mail or $send_mailsecond) {
 			// Показывает сообщение об успешной отправке из файла success.php

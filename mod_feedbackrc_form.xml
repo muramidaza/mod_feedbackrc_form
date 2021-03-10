@@ -21,47 +21,45 @@
 	</files>
 	<config>
 		<fields name="params">
-			<fieldset name="feedback-form" label="Настройки">
+			<fieldset name="feedbackrc-form" label="Настройки">
  
-				<field name="feedback_email" type="email"
+				<field name="feedbackrc_email" type="email"
 					label="E-mail"
 					description="Напишите почтовый ящик, на который хотите получать письма от пользователей."
 					required="true"
 					size="30"
- 
 					validate="email" />
 					
-				<field name="feedback_emailsecond" type="email"
+				<field name="feedbackrc_emailsecond" type="email"
 					label="E-mail"
 					description="Напишите второй почтовый ящик, на который хотите получать письма от пользователей."
 					size="30"
- 
 					validate="email" />					
  
-				<field name="feedback_title_form" type="text" default=""
+				<field name="feedbackrc_title_form" type="text" default=""
 					label="Заголовок в форме"
 					description="Напишите заголовок, который будет отображаться в форме обратной связи перед полями."
 					size="30" />
  
-				<field name="feedback_title" type="text" default=""
+				<field name="feedbackrc_title" type="text" default=""
 					label="Заголовок письма"
 					description="Этот заголовок будет показан в приходящем на почту письме."
 					required="true"
 					size="30" />
  
-				<field name="feedback_success_message" type="text" default=""
+				<field name="feedbackrc_success_message" type="text" default=""
 					label="Удачная отправка"
 					description="Сообщение о том, что письмо удалось отправить."
 					required="true"
 					size="300" />
 					
-				<field name="feedback_error_message" type="text" default=""
+				<field name="feedbackrc_error_message" type="text" default=""
 					label="Ошибка отправки"
 					description="Сообщение об ошибке."
 					required="true"
 					size="300" />
 
-				<field name="feedback_error_captcha_message" type="text" default=""
+				<field name="feedbackrc_error_captcha_message" type="text" default=""
 					label="Ошибка капчи"
 					description="Сообщение об ошибке капчи."
 				 	required="true"

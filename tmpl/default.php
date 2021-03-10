@@ -5,7 +5,7 @@
 
                 <!-- Заголовок -->
                 <div class="card-title">
-                    <h3><?php echo $params['feedback_title_form']?></h3>
+                    <h3><?php echo $params['feedbackrc_title_form']?></h3>
                 </div>
 
                 <form method="POST">
